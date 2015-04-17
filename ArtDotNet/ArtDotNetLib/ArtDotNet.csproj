@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F0D11B1F-FC92-486C-AD8A-3EE38B8E58E5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>ArtDotNet</RootNamespace>
+    <AssemblyName>ArtDotNetLib</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ArtNetController.cs" />
+    <Compile Include="ArtNetDevice.cs" />
+    <Compile Include="ArtNetMediaServer.cs" />
+    <Compile Include="ArtNetNode.cs" />
+    <Compile Include="Net\UdpCommunicator.cs" />
+    <Compile Include="Net\UdpPacket.cs" />
+    <Compile Include="Packets\ArtNetPacket.cs" />
+    <Compile Include="Codes\OpCode.cs" />
+    <Compile Include="Packets\ArtPollPacket.cs" />
+    <Compile Include="Util\Extensions.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Net\" />
+    <Folder Include="Packets\" />
+    <Folder Include="Codes\" />
+    <Folder Include="Util\" />
+  </ItemGroup>
+</Project>
