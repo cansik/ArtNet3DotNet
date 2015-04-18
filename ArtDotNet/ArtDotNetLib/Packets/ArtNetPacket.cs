@@ -15,7 +15,7 @@ namespace ArtDotNet.Packets
 
 		public OpCode OpCode {
 			get {
-				return (OpCode)Data [9];
+				return (OpCode)Data.GetInt16LE (8);
 			}
 		}
 
