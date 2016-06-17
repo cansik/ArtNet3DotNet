@@ -20,11 +20,11 @@ namespace ArtDotNet
 		public void Start(IPAddress address, int port)
 		{
 			socket = new UdpClient();
-			socket.EnableBroadcast = true;
-			socket.ExclusiveAddressUse = false;
-			socket.Client.SendTimeout = 100;
+			//socket.EnableBroadcast = true;
+			//socket.ExclusiveAddressUse = false;
+			//socket.Client.SendTimeout = 100;
 			socket.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
-			socket.Connect(new IPEndPoint(address, port));
+			socket.Client.Bind(new IPEndPoint(address, port));
 
 			server = new BackgroundWorker();
 			server.DoWork += Server_DoWork;
@@ -33,6 +33,7 @@ namespace ArtDotNet
 
 		public void Stop()
 		{
+			server.CancelAsync();
 			// server.CancelAsync();
 			socket.Close();
 		}

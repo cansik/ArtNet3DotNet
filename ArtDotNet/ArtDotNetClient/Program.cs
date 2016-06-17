@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using ArtDotNet;
 
 namespace ArtDotNetClient
@@ -9,7 +10,7 @@ namespace ArtDotNetClient
 		{
 			Console.WriteLine("ArtDotNet Client");
 			var controller = new ArtNetController();
-			controller.Address = System.Net.IPAddress.Parse("127.0.0.1");
+			controller.Address = IPAddress.Loopback;
 			controller.Start();
 
 			Console.ReadKey(true);
