@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Net.Sockets;
 using System.ComponentModel;
 using System.Collections.Generic;
@@ -9,56 +10,56 @@ namespace ArtDotNet
 {
 	public abstract class ArtNetDevice
 	{
-		public const int PORT = 0x1936;
+		public const int PORT = 6454;
 		public const string BROADCAST = "255.255.255.255";
 		public const string NAME = "ArtDotNetServer";
 
 		public string Name { get; set; }
 
-		public IPAddress Address{ get; set; }
+		public IPAddress Address { get; set; }
 
 		public int Port { get; set; }
 
 		UdpCommunicator communicator;
 
-		public ArtNetDevice () : this (NAME)
+		public ArtNetDevice() : this(NAME)
 		{
-			
+
 		}
 
-		public ArtNetDevice (string name) : this (name, IPAddress.Any, PORT)
+		public ArtNetDevice(string name) : this(name, IPAddress.Any, PORT)
 		{
-			
+
 		}
 
-		public ArtNetDevice (string name, IPAddress address, int port)
+		public ArtNetDevice(string name, IPAddress address, int port)
 		{
 			Name = name;
 			Address = address;
 			Port = port;
 		}
 
-		public void Start ()
+		public void Start()
 		{
-			communicator = new UdpCommunicator ();
+			communicator = new UdpCommunicator();
 			communicator.DataReceived += Communicator_DataReceived;
-			communicator.Start (Address, Port);
+			communicator.Start(Address, Port);
 		}
 
-		public void Stop ()
+		public void Stop()
 		{
-			communicator.Stop ();
+			communicator.Stop();
 		}
 
-		public void SendData ()
+		public void SendData()
 		{
 
 		}
 
-		void Communicator_DataReceived (object sender, UdpPacket e)
+		void Communicator_DataReceived(object sender, UdpPacket e)
 		{
-			var packet = new ArtPollPacket (e.EndPoint, e.Data);
-			Console.WriteLine ("{0}: {1} | {2}", e.EndPoint, e.Data.Length, packet.ValidArtNetPacket);
+			var packet = new ArtPollPacket(e.EndPoint, e.Data);
+			Console.WriteLine("{0}: {1} | {2}", e.EndPoint, e.Data.Length, packet.ValidArtNetPacket);
 		}
 	}
 }

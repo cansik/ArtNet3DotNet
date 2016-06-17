@@ -13,46 +13,44 @@ namespace ArtDotNet
 		UdpClient socket;
 		BackgroundWorker server;
 
-		public UdpCommunicator ()
+		public UdpCommunicator()
 		{
 		}
 
-		public void Start (IPAddress address, int port)
+		public void Start(IPAddress address, int port)
 		{
-			try {
-				socket = new UdpClient (new IPEndPoint (address, port));
-			} catch (Exception ex) {
-				socket = new UdpClient ();
-				socket.Connect (new IPEndPoint (address, port));
-			}
+			socket = new UdpClient();
 			socket.EnableBroadcast = true;
+			socket.ExclusiveAddressUse = false;
 			socket.Client.SendTimeout = 100;
-			socket.Client.SetSocketOption (SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
+			socket.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
+			socket.Connect(new IPEndPoint(address, port));
 
-			server = new BackgroundWorker ();
+			server = new BackgroundWorker();
 			server.DoWork += Server_DoWork;
-			server.RunWorkerAsync ();
+			server.RunWorkerAsync();
 		}
 
-		public void Stop ()
+		public void Stop()
 		{
-			server.CancelAsync ();
-			socket.Close ();
+			// server.CancelAsync();
+			socket.Close();
 		}
 
-		public void Send (UdpPacket package)
+		public void Send(UdpPacket package)
 		{
-			socket.SendAsync (package.Data, package.Data.Length, package.EndPoint);
+			socket.SendAsync(package.Data, package.Data.Length, package.EndPoint);
 		}
 
-		void Server_DoWork (object sender, DoWorkEventArgs e)
+		void Server_DoWork(object sender, DoWorkEventArgs e)
 		{
-			while (!server.CancellationPending) {
-				var client = new IPEndPoint (IPAddress.Any, 0);
-				var data = socket.Receive (ref client);
+			while (!server.CancellationPending)
+			{
+				var client = new IPEndPoint(IPAddress.Any, 0);
+				var data = socket.Receive(ref client);
 
 				if (DataReceived != null)
-					DataReceived (this, new UdpPacket (client, data));
+					DataReceived(this, new UdpPacket(client, data));
 			}
 		}
 	}

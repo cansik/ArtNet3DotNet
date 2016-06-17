@@ -5,15 +5,16 @@ namespace ArtDotNetClient
 {
 	class MainClass
 	{
-		public static void Main (string[] args)
+		public static void Main(string[] args)
 		{
-			Console.WriteLine ("ArtDotNet Client");
-			var controller = new ArtNetController ();
-			controller.Start ();
+			Console.WriteLine("ArtDotNet Client");
+			var controller = new ArtNetController();
+			controller.Address = System.Net.IPAddress.Parse("127.0.0.1");
+			controller.Start();
 
-			Console.ReadKey (true);
+			Console.ReadKey(true);
 
-			controller.Stop ();
+			controller.Stop();
 		}
 	}
 }
