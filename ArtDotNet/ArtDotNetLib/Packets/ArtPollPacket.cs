@@ -6,17 +6,22 @@ namespace ArtDotNet.Packets
 {
 	public class ArtPollPacket : ArtNetPacket
 	{
-		public ArtPollPacket(IPEndPoint endPoint, byte[] data) : base(endPoint, data)
-		{
-		}
+		public ArtPollPacket(IPEndPoint endPoint, byte[] rawData) : base(endPoint, rawData) { }
 
-		public int ProtVerHi { get { return Data[10]; } }
+		public ArtPollPacket(ArtNetPacket packet) : base(packet.EndPoint, packet.RawData) { }
 
-		public int ProtVerLo { get { return Data[11]; } }
+		/// <summary>
+		/// The TalkToMe field is a single byte encoded as bit fields.
+		/// The bit fields all control basic protocol behaviour of the node that receives the packet.
+		/// </summary>
+		/// <value>The talk to me field.</value>
+		public byte TalkToMe { get { return RawData[12]; } }
 
-		public int TalkToMe { get { return Data[12]; } }
-
-		public int Priority { get { return Data[13]; } }
+		/// <summary>
+		/// The Priority field specifies the minimum priority of diagnostics message that the controller wishes to receive.
+		/// </summary>
+		/// <value>The priority.</value>
+		public byte Priority { get { return RawData[13]; } }
 	}
 }
 

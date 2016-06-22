@@ -11,6 +11,12 @@ namespace ArtDotNetClient
 			Console.WriteLine("ArtDotNet Client");
 			var controller = new ArtNetController();
 			controller.Address = IPAddress.Loopback;
+
+			controller.DmxPacketReceived += (s, p) =>
+			{
+				Console.WriteLine("DMX Packet received " + p.Length);
+			};
+
 			controller.Start();
 
 			Console.ReadKey(true);

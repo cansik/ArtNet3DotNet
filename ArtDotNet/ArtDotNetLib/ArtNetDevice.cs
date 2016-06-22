@@ -22,6 +22,12 @@ namespace ArtDotNet
 
 		UdpCommunicator communicator;
 
+		public event EventHandler<ArtNetPacket> PacketReceived;
+
+		public event EventHandler<ArtPollPacket> PollPacketReceived;
+
+		public event EventHandler<ArtDmxPacket> DmxPacketReceived;
+
 		public ArtNetDevice() : this(NAME)
 		{
 
@@ -58,10 +64,26 @@ namespace ArtDotNet
 
 		void Communicator_DataReceived(object sender, UdpPacket e)
 		{
-			var packet = new ArtPollPacket(e.EndPoint, e.Data);
-			if (packet.ValidArtNetPacket)
+			var packet = new ArtNetPacket(e.EndPoint, e.RawData);
+			if (packet.IsValid)
 			{
-				Console.WriteLine("{0}: Code: {1} - {2}", e.EndPoint, packet.OpCode, e.Data.Length);
+				//Console.WriteLine("{0}: Code: {1} - {2}", e.EndPoint, packet.OpCode, e.RawData.Length);
+				RoutePacket(packet);
+			}
+		}
+
+		void RoutePacket(ArtNetPacket packet)
+		{
+			if (PacketReceived != null) PacketReceived(this, packet);
+
+			switch (packet.OpCode)
+			{
+				case OpCode.OpPoll:
+					if (PollPacketReceived != null) PollPacketReceived(this, new ArtPollPacket(packet));
+					break;
+				case OpCode.OpDmx:
+					if (DmxPacketReceived != null) DmxPacketReceived(this, new ArtDmxPacket(packet));
+					break;
 			}
 		}
 	}

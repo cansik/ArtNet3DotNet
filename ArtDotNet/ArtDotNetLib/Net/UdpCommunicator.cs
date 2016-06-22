@@ -20,9 +20,9 @@ namespace ArtDotNet
 		public void Start(IPAddress address, int port)
 		{
 			socket = new UdpClient();
-			//socket.EnableBroadcast = true;
-			//socket.ExclusiveAddressUse = false;
-			//socket.Client.SendTimeout = 100;
+			socket.EnableBroadcast = true;
+			socket.ExclusiveAddressUse = false;
+			socket.Client.SendTimeout = 100;
 			socket.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
 			socket.Client.Bind(new IPEndPoint(address, port));
 
@@ -40,7 +40,7 @@ namespace ArtDotNet
 
 		public void Send(UdpPacket package)
 		{
-			socket.SendAsync(package.Data, package.Data.Length, package.EndPoint);
+			socket.SendAsync(package.RawData, package.RawData.Length, package.EndPoint);
 		}
 
 		void Server_DoWork(object sender, DoWorkEventArgs e)
