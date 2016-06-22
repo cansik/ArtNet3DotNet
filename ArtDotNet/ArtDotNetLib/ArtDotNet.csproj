@@ -42,6 +42,7 @@
     <Compile Include="Codes\OpCode.cs" />
     <Compile Include="Packets\ArtPollPacket.cs" />
     <Compile Include="Util\Extensions.cs" />
+    <Compile Include="Packets\ArtDmxPacket.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

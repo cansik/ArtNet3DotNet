@@ -59,7 +59,10 @@ namespace ArtDotNet
 		void Communicator_DataReceived(object sender, UdpPacket e)
 		{
 			var packet = new ArtPollPacket(e.EndPoint, e.Data);
-			Console.WriteLine("{0}: {1} | {2}", e.EndPoint, e.Data.Length, packet.ValidArtNetPacket);
+			if (packet.ValidArtNetPacket)
+			{
+				Console.WriteLine("{0}: Code: {1} - {2}", e.EndPoint, packet.OpCode, e.Data.Length);
+			}
 		}
 	}
 }
