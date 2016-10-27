@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtDotNetClient", "ArtDotNe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtDotNet", "ArtDotNetLib\ArtDotNet.csproj", "{F0D11B1F-FC92-486C-AD8A-3EE38B8E58E5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtNetViewer", "ArtNetViewer\ArtNetViewer.csproj", "{B0A50DBE-600C-4342-99A4-A4EB28E97A12}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -19,5 +21,9 @@ Global
 		{F0D11B1F-FC92-486C-AD8A-3EE38B8E58E5}.Debug|x86.Build.0 = Debug|Any CPU
 		{F0D11B1F-FC92-486C-AD8A-3EE38B8E58E5}.Release|x86.ActiveCfg = Release|Any CPU
 		{F0D11B1F-FC92-486C-AD8A-3EE38B8E58E5}.Release|x86.Build.0 = Release|Any CPU
+		{B0A50DBE-600C-4342-99A4-A4EB28E97A12}.Debug|x86.ActiveCfg = Debug|x86
+		{B0A50DBE-600C-4342-99A4-A4EB28E97A12}.Debug|x86.Build.0 = Debug|x86
+		{B0A50DBE-600C-4342-99A4-A4EB28E97A12}.Release|x86.ActiveCfg = Release|x86
+		{B0A50DBE-600C-4342-99A4-A4EB28E97A12}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 EndGlobal

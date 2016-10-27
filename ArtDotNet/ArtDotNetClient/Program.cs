@@ -47,6 +47,8 @@ namespace ArtDotNetClient
 
 				if (key.Key == ConsoleKey.Escape)
 					running = false;
+
+				Console.Title = ("ArtNet Universe " + subUni);
 			}
 
 			controller.Stop();

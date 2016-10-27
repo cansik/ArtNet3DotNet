@@ -6,7 +6,7 @@
     <ProjectGuid>{4885BFFF-00B3-479A-9150-A4E1A49DA92F}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>ArtDotNetClient</RootNamespace>
-    <AssemblyName>ArtDotNetClient</AssemblyName>
+    <AssemblyName>ArtNetViewer</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">

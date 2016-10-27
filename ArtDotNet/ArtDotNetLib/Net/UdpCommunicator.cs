@@ -34,7 +34,6 @@ namespace ArtDotNet
 		public void Stop()
 		{
 			server.CancelAsync();
-			// server.CancelAsync();
 			socket.Close();
 		}
 
