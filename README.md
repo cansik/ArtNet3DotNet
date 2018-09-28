@@ -3,7 +3,7 @@ ArtNet 3 Implementation for .NET in C#
 
 ## Example
 
-```
+```csharp
 Console.WriteLine("ArtDotNet Client");
 var controller = new ArtNetController();
 controller.Address = IPAddress.Loopback;
